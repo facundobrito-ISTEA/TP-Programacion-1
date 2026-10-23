@@ -27,6 +27,7 @@ cortarse:
 - Error del servidor (404, 500, etc.)
 - Página sin titulares
 - Problemas al guardar el archivo
+- Cancelación con Ctrl+C
 
 ## Librerías usadas
 
@@ -44,9 +45,9 @@ Desde la carpeta del proyecto:
 
 1. Crear el entorno virtual:
 
-```
+   ```
    python -m venv .venv
-```
+   ```
 
 2. Activarlo:
 
@@ -58,9 +59,9 @@ Desde la carpeta del proyecto:
 
 3. Instalar las dependencias:
 
-```
+   ```
    pip install -r requirements.txt
-```
+   ```
 
 ## Uso
 
