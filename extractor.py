@@ -1,5 +1,5 @@
 """Lógica del extractor de titulares.
-
+ 
 Contiene las funciones que descargan una página web, extraen sus
 titulares y los guardan en un archivo. No interactúa con el usuario:
 eso lo hace main.py.
@@ -43,6 +43,8 @@ def descargar_html(url: str) -> str:
     except requests.exceptions.MissingSchema:
         print("Error: la URL no es válida. Tiene que empezar con "
               "http:// o https://")
+    except requests.exceptions.InvalidURL:
+        print("Error: la URL no es válida. Revisá que esté bien escrita.")
     except requests.exceptions.Timeout:
         print(f"Error: el sitio tardó más de {TIMEOUT_SEGUNDOS} segundos "
               "en responder.")
@@ -76,7 +78,12 @@ def extraer_titulares(html: str) -> list[str]:
     etiquetas = sopa.find_all(["h2", "h3"])
 
     for etiqueta in etiquetas:
-        texto = etiqueta.get_text(strip=True)
+        # El " " separa el texto de las etiquetas internas con un
+        # espacio; después se quitan saltos de línea y espacios dobles.
+        texto = etiqueta.get_text(" ", strip=True)
+        texto = texto.replace("\n", " ")
+        while "  " in texto:
+            texto = texto.replace("  ", " ")
 
         if texto == "":
             continue
