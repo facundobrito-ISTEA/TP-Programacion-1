@@ -1,8 +1,8 @@
 """Lógica del extractor de titulares.
- 
+
 Contiene las funciones que descargan una página web, extraen sus
-titulares y los guardan en un archivo. No interactúa con el usuario:
-eso lo hace main.py.
+titulares y los guardan en un archivo. Si ocurre un error, las
+funciones lo informan por pantalla en lugar de cortar el programa.
 """
 
 import requests
@@ -79,11 +79,9 @@ def extraer_titulares(html: str) -> list[str]:
 
     for etiqueta in etiquetas:
         # El " " separa el texto de las etiquetas internas con un
-        # espacio; después se quitan saltos de línea y espacios dobles.
-        texto = etiqueta.get_text(" ", strip=True)
-        texto = texto.replace("\n", " ")
-        while "  " in texto:
-            texto = texto.replace("  ", " ")
+        # espacio. Después, split() corta por cualquier espacio o salto
+        # de línea y join() une las palabras con un solo espacio.
+        texto = " ".join(etiqueta.get_text(" ").split())
 
         if texto == "":
             continue
