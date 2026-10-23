@@ -4,27 +4,39 @@ Programa de consola en Python que descarga una página web, extrae sus
 titulares (etiquetas `<h2>` y `<h3>`), muestra los primeros 10 numerados y,
 si el usuario quiere, los guarda en un archivo de texto.
 
-Proyecto del Ejercicio Avanzado 3 de Programación 1 (Unidad 11).
+Trabajo grupal del Ejercicio Avanzado 3 de Programación 1 (Unidad 11).
 
 ## Qué hace
 
-1. Pide la URL de un sitio de noticias (si se aprieta Enter usa una por
-   defecto).
+1. Pide la URL de un sitio de noticias. Si se aprieta Enter, usa una por
+   defecto; si se escribe sin `://` (por ejemplo `sitio.com`), le agrega
+   `https://` al principio.
 2. Descarga el HTML de la página con `requests`.
 3. Extrae los titulares con `beautifulsoup4`.
 4. Muestra por pantalla los primeros 10, numerados.
 5. Pregunta si se quieren guardar en `titulares.txt`.
 
-El programa maneja errores con `try / except`: URL inválida, sin conexión,
-timeout, error del servidor, página sin titulares y problemas al guardar el
-archivo.
+## Manejo de errores
+
+El programa maneja errores con `try / except` y avisa por pantalla sin
+cortarse:
+
+- URL inválida
+- Sin conexión o sitio inexistente
+- Timeout (el sitio tarda más de 10 segundos)
+- Error del servidor (404, 500, etc.)
+- Página sin titulares
+- Problemas al guardar el archivo
+
+## Librerías usadas
+
+- `requests`: descarga el HTML de la página.
+- `beautifulsoup4`: analiza el HTML y extrae los titulares.
 
 ## Requisitos
 
 - Python 3.9 o superior
-- Librerías de terceros (se instalan con pip):
-  - `requests`
-  - `beautifulsoup4`
+- Las librerías de terceros anteriores (se instalan con pip, ver abajo)
 
 ## Instalación
 
@@ -32,9 +44,9 @@ Desde la carpeta del proyecto:
 
 1. Crear el entorno virtual:
 
-   ```
+```
    python -m venv .venv
-   ```
+```
 
 2. Activarlo:
 
@@ -46,9 +58,9 @@ Desde la carpeta del proyecto:
 
 3. Instalar las dependencias:
 
-   ```
+```
    pip install -r requirements.txt
-   ```
+```
 
 ## Uso
 
@@ -81,7 +93,7 @@ Para salir del entorno virtual: `deactivate`.
 ## Estructura del proyecto
 
 ```
-extractor_titulares/
+TP-Programacion-1/
 ├── .venv/               (entorno virtual, no se sube a Git)
 ├── .gitignore
 ├── README.md
@@ -93,3 +105,7 @@ extractor_titulares/
 ## Integrantes
 
 - Facundo Brito
+- Guido Julian Andino
+- Franco Luciano Arias
+- Pedro Bardeci
+- Sergio Antonio Álvarez
